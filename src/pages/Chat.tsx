@@ -14,16 +14,13 @@ export function Chat() {
     retryLastMessage
   } = useChat({
     onError: (error) => {
-      // You could implement a toast notification here
       console.error('Chat error:', error);
     }
   });
 
   useEffect(() => {
-    // Check if API key is set
     const apiKey = localStorage.getItem(LOCAL_STORAGE_KEYS.apiKey);
     if (!apiKey) {
-      // You could implement a redirect or modal here
       console.warn('API key not set. Please configure in settings.');
     }
   }, []);
