@@ -1,0 +1,49 @@
+ai-chatbot/
+├── src/
+│   ├── api/
+│   │   ├── openai.ts                 # OpenAI API configuration and requests
+│   │   └── types.ts                  # API related type definitions
+│   ├── components/
+│   │   ├── chat/
+│   │   │   ├── ChatBubble.tsx        # Individual message component
+│   │   │   ├── ChatInput.tsx         # Message input component
+│   │   │   ├── ChatWindow.tsx        # Main chat interface
+│   │   │   └── MessageList.tsx       # List of messages
+│   │   ├── layout/
+│   │   │   ├── Header.tsx            # Application header
+│   │   │   ├── Sidebar.tsx           # Navigation sidebar
+│   │   │   └── Layout.tsx            # Main layout wrapper
+│   │   └── shared/
+│   │       ├── Button.tsx            # Reusable button component
+│   │       ├── Input.tsx             # Reusable input component
+│   │       └── Loading.tsx           # Loading states
+│   ├── context/
+│   │   └── ChatContext.tsx           # Global chat state management
+│   ├── hooks/
+│   │   ├── useChat.ts                # Chat functionality hook
+│   │   └── useOpenAI.ts              # OpenAI API interaction hook
+│   ├── pages/
+│   │   ├── Chat.tsx                  # Main chat page
+│   │   ├── Settings.tsx              # Settings page
+│   │   └── History.tsx               # Chat history page
+│   ├── routes/
+│   │   └── index.tsx                 # Route definitions
+│   ├── styles/
+│   │   └── globals.css               # Global styles and Tailwind imports
+│   ├── types/
+│   │   └── index.ts                  # Global type definitions
+│   ├── utils/
+│   │   ├── constants.ts              # Application constants
+│   │   └── helpers.ts                # Helper functions
+│   ├── App.tsx                       # Root component
+│   ├── main.tsx                      # Entry point
+│   └── vite-env.d.ts                 # Vite type definitions
+├── public/
+│   └── assets/                       # Static assets
+├── .gitignore
+├── index.html
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+└── vite.config.ts
