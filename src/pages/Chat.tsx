@@ -28,21 +28,22 @@ export function Chat() {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Chat</h1>
-        <div className="space-x-2">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-4">
+        <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">Chat</h1>
+        <div className="flex flex-wrap gap-2">
           <Button 
             variant="default"
             onClick={() => window.location.reload()}
+            className="text-sm sm:text-base"
           >
-            new chat <PlusCircle size={16} className='mx-1' />
+            <span className="hidden sm:inline">New Chat</span>
+            <PlusCircle size={16} className="sm:ml-1" />
           </Button>
           <Button
             variant="outline"
             onClick={clearChat}
             disabled={messages.length === 0 || isLoading}
-            className='dark:bg-gray-800 dark:text-gray-100'
-
+            className="text-sm sm:text-base dark:bg-gray-800 dark:text-gray-100"
           >
             Clear Chat
           </Button>
@@ -51,6 +52,7 @@ export function Chat() {
               variant="secondary"
               onClick={retryLastMessage}
               disabled={isLoading}
+              className="text-sm sm:text-base"
             >
               Retry
             </Button>
@@ -59,7 +61,7 @@ export function Chat() {
       </div>
       
       {error && (
-        <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+        <div className="mb-4 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm sm:text-base">
           {error}
         </div>
       )}

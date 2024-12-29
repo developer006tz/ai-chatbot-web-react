@@ -1,16 +1,23 @@
 import React from 'react';
-import {  LogOut } from 'lucide-react';
+import { LogOut, Menu } from 'lucide-react';
 import { ThemeToggle } from '../shared/ThemeToggle';
 
 interface HeaderProps {
   onSignOut: () => void;
+  toggleSidebar: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onSignOut }) => {
+export const Header: React.FC<HeaderProps> = ({ onSignOut, toggleSidebar }) => {
   return (
     <header className="bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
-      <div className="max-w-6xl mx-auto px-4 py-6 flex justify-end items-center">
-       
+      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        >
+          <Menu className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+        </button>
+        
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
