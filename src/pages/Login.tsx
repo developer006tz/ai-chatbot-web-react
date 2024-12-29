@@ -104,7 +104,7 @@ export function Login() {
                 {/*  Add a button to sign up with github */}
                 <Button
                 variant="outline"
-                className="w-1/2"
+                className="w-1/2 hover:bg-gray-300 dark:hover:bg-gray-700"
                 size="lg"
                 onClick={() => signInWithGithub()}
                 >
@@ -117,7 +117,7 @@ export function Login() {
                 </Button>
               <Button
                 variant="outline"
-                className="w-1/2"
+                className="w-1/2 hover:bg-gray-300 dark:hover:bg-gray-700"
                 size="lg"
                 onClick={() => signUpWithGoogle()}
               >

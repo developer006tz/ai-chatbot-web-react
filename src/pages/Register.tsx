@@ -39,6 +39,7 @@ export function Register() {
     }
   };
 
+
   return (
     <div className="min-h-screen bg-slate-300 dark:bg-gray-800 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -126,7 +127,7 @@ export function Register() {
                 {/*  Add a button to sign up with github */}
                 <Button
                 variant="outline"
-                className="w-1/2"
+                className="w-1/2 hover:bg-gray-300 dark:hover:bg-gray-700"
                 size="lg"
                 onClick={() => signInWithGithub()}
                 >
@@ -139,7 +140,7 @@ export function Register() {
                 </Button>
               <Button
                 variant="outline"
-                className="w-1/2"
+                className="w-1/2 hover:bg-gray-300 dark:hover:bg-gray-700"
                 size="lg"
                 onClick={() => signUpWithGoogle()}
               >
