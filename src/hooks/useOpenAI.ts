@@ -33,12 +33,13 @@ export function useOpenAI({ onError }: UseOpenAIOptions = {}) {
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
+        
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: 'gpt-4-turbo-preview',
+          model: 'gpt-4o',
           messages: messages.map(msg => ({
             role: msg.role,
             content: msg.content

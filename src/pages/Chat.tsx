@@ -3,6 +3,7 @@ import { ChatWindow } from '../components/chat/ChatWindow';
 import { useEffect } from 'react';
 import { Button } from '../components/shared/Button';
 import { LOCAL_STORAGE_KEYS } from '../utils/constants';
+import { PlusCircle } from 'lucide-react';
 
 export function Chat() {
   const {
@@ -30,6 +31,12 @@ export function Chat() {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-semibold text-gray-900">Chat</h1>
         <div className="space-x-2">
+          <Button 
+            variant="default"
+            onClick={() => window.location.reload()}
+          >
+            new chat <PlusCircle size={16} className='mx-1' />
+          </Button>
           <Button
             variant="outline"
             onClick={clearChat}
