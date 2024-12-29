@@ -1,14 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { DefaultLayout } from '../components/layout/DefaultLayout';
 import { Chat } from '../pages/Chat';
 import { Settings } from '../pages/Settings';
 import { History } from '../pages/History';
 import { ErrorBoundary } from '../components/shared/ErrorBoundary';
+import { LayoutWrapper } from './LayoutWrapper';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <DefaultLayout />,
+    element: <LayoutWrapper />,
     errorElement: <ErrorBoundary />,
     children: [
       {
