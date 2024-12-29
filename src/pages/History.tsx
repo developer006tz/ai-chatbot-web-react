@@ -53,11 +53,11 @@ export function History() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Chat History</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Chat History</h1>
       
       <div className="space-y-4">
         {chatSessions.length === 0 ? (
-          <p className="text-gray-500 text-center py-8">
+          <p className="text-gray-500 dark:text-gray-400 text-center py-8">
             No chat history available
           </p>
         ) : (
@@ -70,11 +70,11 @@ export function History() {
                 <span className="text-sm text-gray-500">
                   {formatTimestamp(session.timestamp)}
                 </span>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-gray-500 dark:text-gray-400">
                   {session.messages.length} messages
                 </span>
               </div>
-              <p className="text-gray-900 line-clamp-2">{session.lastMessage}</p>
+              <p className="text-gray-900 dark:text-gray-400 line-clamp-2">{session.lastMessage}</p>
             </div>
           ))
         )}

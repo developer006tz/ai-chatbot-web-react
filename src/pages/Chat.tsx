@@ -29,7 +29,7 @@ export function Chat() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold text-gray-900">Chat</h1>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Chat</h1>
         <div className="space-x-2">
           <Button 
             variant="default"
@@ -41,6 +41,8 @@ export function Chat() {
             variant="outline"
             onClick={clearChat}
             disabled={messages.length === 0 || isLoading}
+            className='dark:bg-gray-800 dark:text-gray-100'
+
           >
             Clear Chat
           </Button>

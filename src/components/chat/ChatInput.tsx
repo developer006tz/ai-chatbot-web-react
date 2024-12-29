@@ -49,7 +49,7 @@ export function ChatInput({ onSendMessage, isLoading }: ChatInputProps) {
   };
 
   return (
-    <div className="border-t bg-white px-4 py-3">
+    <div className="border-t bg-white dark:bg-slate-700 px-4 py-3">
       <div className="mx-auto max-w-4xl">
         <form onSubmit={handleSubmit} className="relative">
           {/* Message Input Area */}
@@ -58,7 +58,7 @@ export function ChatInput({ onSendMessage, isLoading }: ChatInputProps) {
               isFocused
                 ? 'border-indigo-500 ring-2 ring-indigo-200'
                 : 'border-gray-300'
-            } bg-white transition-all duration-200`}
+            } bg-white dark:bg-gray-600 transition-all duration-200`}
           >
             {/* Toolbar */}
             <div className="absolute left-2 top-3 flex items-center space-x-2">
@@ -79,7 +79,7 @@ export function ChatInput({ onSendMessage, isLoading }: ChatInputProps) {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               placeholder="Type your message..."
-              className="w-full resize-none rounded-lg py-3 pl-12 pr-20 focus:outline-none"
+              className="w-full resize-none bg-white dark:bg-gray-600 dark:text-white rounded-lg py-3 pl-12 pr-20 focus:outline-none"
               rows={1}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {

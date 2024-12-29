@@ -9,9 +9,9 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+    <aside className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 overflow-y-auto">
       <div className="p-6">
-        <h1 className="text-2xl font-semibold text-gray-900">AI Chat</h1>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">AI Chat</h1>
       </div>
       <nav className="space-y-1 px-3">
         {navigationItems.map(({ name, path, icon: Icon }) => (
@@ -21,8 +21,8 @@ export function Sidebar() {
             className={({ isActive }) =>
               `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                 isActive
-                  ? 'bg-indigo-50 text-indigo-600'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  ? 'bg-indigo-50 dark:bg-gray-700 text-indigo-600 dark:text-indigo-500'
+                  : 'text-gray-700 dark:text-gray-400 hover:bg-gray-50'
               }`
             }
           >

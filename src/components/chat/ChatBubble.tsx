@@ -16,15 +16,15 @@ import { formatTimestamp } from '../../utils/helpers';
           className={`max-w-[80%] rounded-lg px-4 py-2 ${
             isUser
               ? 'bg-indigo-600 text-white'
-              : 'bg-gray-100 text-gray-900'
+              : 'bg-gray-100 dark:bg-gray-600 text-gray-900'
           }`}
         >
           <div className="prose prose-sm max-w-none">
-            <p className="whitespace-pre-wrap break-words">{message.content}</p>
+            <p className="whitespace-pre-wrap dark:text-white break-words">{message.content}</p>
           </div>
           <div
             className={`text-xs mt-1 ${
-              isUser ? 'text-indigo-200' : 'text-gray-500'
+              isUser ? 'text-indigo-200 ' : 'text-gray-500 dark:text-gray-400'
             }`}
           >
             {formatTimestamp(message.timestamp)}

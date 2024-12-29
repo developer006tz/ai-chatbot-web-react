@@ -10,7 +10,7 @@ interface ChatWindowProps {
 
 export function ChatWindow({ messages, isLoading, onSendMessage }: ChatWindowProps) {
   return (
-    <div className="flex flex-col h-full bg-white rounded-lg shadow">
+    <div className="flex flex-col h-full bg-white dark:bg-gray-600/10 rounded-lg shadow">
       {messages.length === 0 ? (
         <div className="flex-1 flex items-center justify-center text-gray-500">
           <p>Start a conversation by sending a message.</p>

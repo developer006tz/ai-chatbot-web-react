@@ -35,11 +35,11 @@ export function Settings() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Settings</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Settings</h1>
       
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">API Configuration</h2>
+        <div className="bg-white dark:bg-gray-700 shadow rounded-lg p-6">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">API Configuration</h2>
           
           <Input
             label="OpenAI API Key"
@@ -48,7 +48,7 @@ export function Settings() {
             onChange={(e) => setApiKey(e.target.value)}
             error={error || undefined}
             placeholder="sk-..."
-            className="mb-4"
+            className="mb-4 dark:bg-gray-600 py-3 px-2"
           />
           
           <Button type="submit" className="w-full">
