@@ -1,6 +1,6 @@
 export const API_CONFIG = {
     baseURL: import.meta.env.VITE_OPENAI_API_URL || 'https://api.openai.com/v1',
-    defaultModel: 'gpt-4-turbo-preview',
+    defaultModel: 'gpt-4o',
     maxTokens: 2000,
     temperature: 0.7,
     systemMessage: "You are a helpful AI assistant that provides clear, accurate, and concise responses."

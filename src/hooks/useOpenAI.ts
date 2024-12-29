@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Message } from '../types';
+import { API_CONFIG } from '../utils/constants';
 
 interface OpenAIResponse {
   id: string;
@@ -31,7 +32,7 @@ export function useOpenAI({ onError }: UseOpenAIOptions = {}) {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch(API_CONFIG.baseURL+'/chat/completions', {
         method: 'POST',
         
         headers: {
@@ -39,13 +40,13 @@ export function useOpenAI({ onError }: UseOpenAIOptions = {}) {
           'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: 'gpt-4o',
+          model: API_CONFIG.defaultModel,
           messages: messages.map(msg => ({
             role: msg.role,
             content: msg.content
           })),
-          temperature: 0.7,
-          max_tokens: 2000
+          temperature: API_CONFIG.temperature,
+          max_tokens: API_CONFIG.maxTokens
         })
       });
 
