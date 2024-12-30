@@ -161,8 +161,7 @@ export const useChatStore = create<ChatState & ChatActions>((set, get) => ({
     try {
       set({ isLoading: true, error: null })
 
-      // Insert user message
-      const { data: userMessage, error: userMessageError } = await supabase
+      const {  error: userMessageError } = await supabase
         .from('messages')
         .insert({
           chat_id: currentChat.id,
