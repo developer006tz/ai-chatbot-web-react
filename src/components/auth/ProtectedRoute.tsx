@@ -1,15 +1,12 @@
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuthStore } from '../../store/authStore';
 import { Loading } from '../shared/Loading';
 
-interface ProtectedRouteProps {
-  children: React.ReactNode;
-}
+export function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, loading, initialized } = useAuthStore();
+  const location = useLocation();
 
-export function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { user, loading } = useAuth();
-
-  if (loading) {
+  if (!initialized || loading) {
     return (
       <div className="h-screen flex items-center justify-center">
         <Loading size="lg" text="Loading..." />
@@ -18,7 +15,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   }
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   return <>{children}</>;

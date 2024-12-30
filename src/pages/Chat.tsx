@@ -1,50 +1,90 @@
-import { ChatWindow } from '../components/chat/ChatWindow';
+// src/pages/Chat.tsx
 import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ChatWindow } from '../components/chat/ChatWindow';
 import { Button } from '../components/shared/Button';
-import { LOCAL_STORAGE_KEYS } from '../utils/constants';
 import { PlusCircle } from 'lucide-react';
-import { useChatStore } from '../store/chatStore'
+import { useChatStore } from '../store/chatStore';
+import { useAuthStore } from '../store/authStore';
 
 export function Chat() {
-  const { messages, isLoading, error, sendMessage, clearChat, retryLastMessage } = useChatStore()
-
+  const navigate = useNavigate();
+  const { chatId } = useParams();
+  const { user } = useAuthStore();
+  const {
+    chats,
+    currentChat,
+    messages,
+    isLoading,
+    error,
+    sendMessage,
+    createNewChat,
+    loadChats,
+    setCurrentChat,
+    clearCurrentChat,
+    initializeRealtimeSubscription
+  } = useChatStore();
 
   useEffect(() => {
-    const apiKey = localStorage.getItem(LOCAL_STORAGE_KEYS.apiKey);
-    if (!apiKey) {
-      console.warn('API key not set. Please configure in settings.');
+    const initializeChat = async () => {
+      if (!user) return;
+
+      await loadChats();
+      initializeRealtimeSubscription();
+
+      if (chatId) {
+        const chat = chats.find(c => c.id === chatId);
+        if (chat) {
+          setCurrentChat(chat);
+        } else {
+          navigate('/', { replace: true });
+        }
+      } else if (chats.length > 0) {
+        const latestChat = chats[0]; // Assuming chats are sorted by date
+        setCurrentChat(latestChat);
+        navigate(`/chat/${latestChat.id}`, { replace: true });
+      }
+    };
+
+    initializeChat();
+  }, [user, chatId]);
+
+  const handleNewChat = async () => {
+    const newChatId = await createNewChat();
+    navigate(`/chat/${newChatId}`);
+  };
+
+  const handleNewMessage = async (content: string) => {
+    if (!currentChat) {
+      const newChatId = await createNewChat();
+      navigate(`/chat/${newChatId}`);
     }
-  }, []);
+    await sendMessage(content);
+  };
 
   return (
     <div className="h-full flex flex-col">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-4">
-        <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">Chat</h1>
+        <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">
+          {currentChat?.title || 'New Chat'}
+        </h1>
         <div className="flex flex-wrap gap-2">
           <Button 
             variant="default"
-            onClick={() => window.location.reload()}
+            onClick={handleNewChat}
             className="text-sm sm:text-base"
           >
             <span className="hidden sm:inline">New Chat</span>
             <PlusCircle size={16} className="sm:ml-1" />
           </Button>
-          <Button
-            variant="outline"
-            onClick={clearChat}
-            disabled={messages.length === 0 || isLoading}
-            className="text-sm sm:text-base dark:bg-gray-800 dark:text-gray-100"
-          >
-            Clear Chat
-          </Button>
-          {error && (
+          {currentChat && messages.length > 0 && (
             <Button
-              variant="secondary"
-              onClick={retryLastMessage}
+              variant="outline"
+              onClick={clearCurrentChat}
               disabled={isLoading}
-              className="text-sm sm:text-base"
+              className="text-sm sm:text-base dark:bg-gray-800 dark:text-gray-100"
             >
-              Retry
+              Clear Chat
             </Button>
           )}
         </div>
@@ -60,7 +100,7 @@ export function Chat() {
         <ChatWindow
           messages={messages}
           isLoading={isLoading}
-          onSendMessage={sendMessage}
+          onSendMessage={handleNewMessage}
         />
       </div>
     </div>
