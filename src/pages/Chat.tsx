@@ -1,23 +1,13 @@
-import { useChat } from '../hooks/useChat';
 import { ChatWindow } from '../components/chat/ChatWindow';
 import { useEffect } from 'react';
 import { Button } from '../components/shared/Button';
 import { LOCAL_STORAGE_KEYS } from '../utils/constants';
 import { PlusCircle } from 'lucide-react';
+import { useChatStore } from '../store/chatStore'
 
 export function Chat() {
-  const {
-    messages,
-    isLoading,
-    error,
-    sendMessage,
-    clearChat,
-    retryLastMessage
-  } = useChat({
-    onError: (error) => {
-      console.error('Chat error:', error);
-    }
-  });
+  const { messages, isLoading, error, sendMessage, clearChat, retryLastMessage } = useChatStore()
+
 
   useEffect(() => {
     const apiKey = localStorage.getItem(LOCAL_STORAGE_KEYS.apiKey);

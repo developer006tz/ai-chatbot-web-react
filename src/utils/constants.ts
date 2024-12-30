@@ -1,5 +1,6 @@
 export const API_CONFIG = {
     baseURL: import.meta.env.VITE_OPENAI_API_URL || 'https://api.openai.com/v1',
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     defaultModel: 'gpt-4o',
     maxTokens: 2000,
     temperature: 0.7,
